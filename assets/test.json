@@ -1,0 +1,26 @@
+[	
+	{
+		"name" : "Tim",
+		"preference" : "b"
+	},
+	{
+		"name" : "Tom",
+		"preference" : "b"
+	},
+	{
+		"name" : "Steve",
+		"preference" : "a"
+	},
+	{
+		"name" : "Rick",
+		"preference" : "a"
+	},
+	{
+		"name" : "Nile",
+		"preference" : "c"
+	},
+	{
+		"name" : "James",
+		"preference" : "c"
+	}
+]

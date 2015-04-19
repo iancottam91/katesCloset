@@ -1,0 +1,39 @@
+*
+{
+	@include box-sizing(border-box);
+}
+header
+{
+	// height: 20px;
+}
+
+.margin-bottom
+{
+	margin-bottom: 15px;
+}
+
+.block{
+	min-height: 300px;
+	padding: $grid-gutter-width/2;
+	&.red 
+	{
+		background: rgba(255,0,0,0.3);
+	}
+	&.blue
+	{
+		background: rgba(0,0,255,0.3);	
+	}
+	&.purple
+	{
+		background: rgba(155,0,255,0.9);
+	}
+	&.grey
+	{
+		background: #ccc;
+	}
+}
+img
+{
+	width: 100%;
+	max-height: 120px;
+}
