@@ -2575,6 +2575,11 @@ select[multiple].input-lg {
   color: pink;
 }
 
+/* line 2, ../sass/_clothes-list.scss */
+img {
+  max-height: 300px;
+}
+
 /* line 2, ../sass/_grid-example.scss */
 * {
   -webkit-box-sizing: border-box;
@@ -2607,10 +2612,4 @@ select[multiple].input-lg {
 /* line 31, ../sass/_grid-example.scss */
 .block.grey {
   background: #ccc;
-}
-
-/* line 36, ../sass/_grid-example.scss */
-img {
-  width: 100%;
-  max-height: 120px;
 }

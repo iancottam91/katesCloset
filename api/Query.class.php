@@ -5,7 +5,7 @@ class Query{
 	function getValues(){
 
 		// connect to database
-		$link = mysqli_connect('localhost', 'root', 'root');
+		$link = mysqli_connect('localhost', 'root', 'Art3m1ss00');
 
 		// select relevant table
 		mysqli_select_db($link, 'kates_closet');
@@ -46,7 +46,7 @@ class Query{
 
 	function getAllValuesAsJson(){
 				// connect to database
-		$link = mysqli_connect('localhost', 'root', 'root');
+		$link = mysqli_connect('localhost', 'root', 'Art3m1ss00');
 
 		// select relevant table
 		mysqli_select_db($link, 'kates_closet');
