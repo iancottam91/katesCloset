@@ -1,7 +1,24 @@
-#main-nav
+.navbar-default
 {
-	*
+	background-color: $navBg;
+	margin-bottom: 0;
+	border: 0;
+	.navbar-brand
 	{
-		color: pink;
+		color: $fontColor;	
+		text-decoration: none;
+		font-weight: bold;
+	}
+	.navbar-nav
+	{
+		> li
+		{
+			> a
+			{
+				color: $fontColor;	
+				text-decoration: none;
+				font-weight: bold;
+			}
+		}		
 	}
 }

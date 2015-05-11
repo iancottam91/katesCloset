@@ -6,6 +6,8 @@
 
 		<!-- styles -->
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+		<!-- font -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
 
 		<!-- scripts -->
 		<script src="assets/js/vendor/underscore.js" type="text/javascript"></script>
@@ -19,10 +21,13 @@
 	</head>
 	<body>
 
-		<!-- This needs to go in a template too as it needs to dynamically add page links -->
+	<!-- Application templates get rendered on each page -->
+	<!-- Add outlets to add applciation specific templates -->
 
-		<nav class="navbar navbar-default container">
-	        <div class="container-fluid">
+	<script type="text/x-handlebars" data-template-name='application'>
+
+		<nav class="navbar navbar-default container-fluid">
+	        <div class="container">
 	            <div class="navbar-header">
 		            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 		                <span class="sr-only">Toggle navigation</span>
@@ -30,46 +35,60 @@
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		            </button>
-		            <a class="navbar-brand" href="#">Kate's Closet</a>
+		            {{#link-to 'index' class='navbar-brand'}}Kates Closet{{/link-to}}
 		        </div>
 		        <div id="navbar" class="navbar-collapse collapse">
 		            <ul class="nav navbar-nav navbar-right">
-		                <li class="active"><a href="./">Home</a></li>
-		                <li><a href="../navbar-static-top/">About</a></li>
-		                <li><a href="../navbar-fixed-top/">Contact Us</a></li>
+		                <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+		                <li>{{#link-to 'products'}}Products{{/link-to}}</li>
+		                <li>{{#link-to 'about'}}About{{/link-to}}</li>
+		                <li>{{#link-to 'contactus'}}Contact Us{{/link-to}}</li>
 		            </ul>
 	            </div>
         	</div>
-      	</nav>   
-	
-		<!-- TEMPLATES -->
-		<script type="text/x-handlebars" data-template-name="application">
+      	</nav>  
+
+		<div class='content container'>
+			{{outlet}}
+		</div>
+
+		<footer class='container'>
 			
+		</footer>
 
-			<div class="content container">
-				
-					{{outlet}}
-				
+	</script>
+
+	<!-- Loop through each product in the products template - could be in the index template -->
+	<script type="text/x-handlebars" data-template-name='products'>
+		{{#each}}
+			<div class="col-md-4">
+			    <a {{bind-attr href='shopLink'}}><img {{bind-attr src='imgUrl'}} {{bind-attr alt='description'}}></a>									
+			    <p><a {{bind-attr href='shopLink'}}>Description: {{description}}</a></p>
+			    <p>Price: <span class="price">{{price}}</span></p>
+			    <p>Shop name: {{shopName}}</p>							 
 			</div>
-			<footer>
-				<div class="footer">
-				</div>
-			</footer>
+		{{/each}}
+	</script>
 
-		</script>
 
-		<!-- Index template -->
-		<script type="text/x-handlebars" data-template-name="index">
-			<h1>Clothing List</h1>
-		</script>
 
-		<!-- About template -->
-		<script type="text/x-handlebars" data-template-name="about">
-			<h1>About Kate's Closet</h1>
-		</script>
 
-		<!-- Favourites template -->
 
-		<script src="assets/js/ajaxData.js" type="text/javascript"></script>
+	<!-- Just on contactus page -->
+	<script type="text/x-handlebars" data-template-name='about'>
+		<h1>Read all about it</h1>
+	</script>
+
+	<!-- Just on contactus page -->
+	<script type="text/x-handlebars" data-template-name='contactus'>
+		<h1>Contact us at Kates Closet</h1>
+	</script>
+
+  
+
+		<!-- Favourites template 
+	-->
+
+		<!-- // <script src="assets/js/ajaxData.js" type="text/javascript"></script> -->
 	</body>
 </html>

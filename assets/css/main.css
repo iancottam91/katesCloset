@@ -2570,14 +2570,53 @@ select[multiple].input-lg {
   color: #444444;
 }
 
-/* line 4, ../sass/_header.scss */
-#main-nav * {
-  color: pink;
+/* line 2, ../sass/_header.scss */
+.navbar-default {
+  background-color: #f2d8ee;
+  margin-bottom: 0;
+  border: 0;
+}
+/* line 7, ../sass/_header.scss */
+.navbar-default .navbar-brand {
+  color: #85748c;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* line 17, ../sass/_header.scss */
+.navbar-default .navbar-nav > li > a {
+  color: #85748c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* line 2, ../sass/_page.scss */
+body {
+  margin: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/* line 7, ../sass/_page.scss */
+a {
+  text-decoration: none;
+  color: #85748c;
+}
+/* line 11, ../sass/_page.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 16, ../sass/_page.scss */
+.content {
+  padding-top: 40px;
+}
+/* line 20, ../sass/_page.scss */
+.content .col-md-4 {
+  text-align: center;
 }
 
 /* line 2, ../sass/_clothes-list.scss */
 img {
-  max-height: 300px;
+  height: 300px;
 }
 
 /* line 2, ../sass/_grid-example.scss */

@@ -1,0 +1,10 @@
+1) set up index or application template
+2) set up routes and about us template
+3) Create model for product
+3.5) Create product template
+4) Use controlled and Fixture to populate page with static examples
+*) Add basic styles
+5) Use ember data to populate with dynamic content
+6) Add filters to top of page
+7) Add pagination
+8) Get description for 'product details' type page
