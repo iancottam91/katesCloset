@@ -2,6 +2,7 @@ body
 {
 	margin: 0;
 	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: $baseFontSize;
 }
 a
 {
@@ -12,11 +13,78 @@ a
 		text-decoration: underline;
 	}
 }
+input[type="text"]
+{
+	font-family: 'Open Sans Condensed', sans-serif;
+	width: 200px;
+	font-size: $baseFontSize;
+}
+select
+{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: $baseFontSize;
+}
+
+.sr-only
+{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
 .content
 {	
 	// background: $panelBg;
 	padding-top: 40px;
-	.col-md-4
+	.products
+	{
+		.col-md-4
+		{
+			text-align: center;
+		}
+	}
+}
+.product-controls
+{
+	h2
+	{
+		margin-top: 0;
+	}
+	.brand
+	{	
+		h3
+		{
+			margin-bottom: 5px;
+		}
+		input[type="checkbox"]
+		{
+			position: relative;
+			top: -2px;
+		}
+		label
+		{
+			font-weight: normal;
+			margin-left: 10px
+		}
+	}
+}
+.filters
+{
+	margin-top: 7px;
+	margin-bottom: 20px;
+	.text-filter
+	{
+		form
+		{
+			float: right;
+		}
+	}
+	.sort-by
 	{
 		text-align: center;
 	}

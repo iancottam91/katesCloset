@@ -4,7 +4,13 @@
 3.5) Create product template
 4) Use controlled and Fixture to populate page with static examples
 *) Add basic styles
-5) Use ember data to populate with dynamic content
-6) Add filters to top of page
+5) Add filters to top of page:
+- dynamically change sort
+
+6) left filters
+- price slider
+
+
+6) Use ember data to populate with dynamic content
 7) Add pagination
 8) Get description for 'product details' type page

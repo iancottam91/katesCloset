@@ -95,9 +95,61 @@ App.ProductsRoute = Ember.Route.extend({
 
 });
 
+// possibly better way to do the filters: http://emberjs.jsbin.com/fikuk/6/edit?html,css,js,output
+// select menu: http://emberjs.com/api/classes/Ember.Select.html
 // Array controller to work with Products, which is array data
+
 App.ProductsController = Ember.ArrayController.extend({
-	sortProperties: ['description'],
+	totalItems: function(){
+		// this first looks in the controller for the value of length, then in the model
+		return this.get('length');
+	}.property('length'),
+
+	// define the values for the select pagination
+	itemsPerPageOptions: function(){
+    	return [1, 2, 4, this.get('totalItems')];
+	}.property('totalItems'),
+
+	// set the default value - this also is bound to changes to the select menu
+	selectedItem : function(){
+		return this.get('totalItems');
+	}.property('totalItems'),
+	
+
+	sortOptions: [
+		{desc: 'Description', val: 'description'},
+		{desc: 'Price high to low', val: 'price:asc'},
+		{desc: 'Price low to high', val: 'price:desc'},
+	],
+
+	// initally sort by description
+	sortValue : 'description', // for the select menu
+	sortProperties: ['description'], // for the actual sorting
+
+	// observe changes to the select menu & change the sortProperties appropriately
+    onSortPropertiesChange : function(){
+	  console.log('change');
+	  this.set('sortProperties', ['price']);
+	}.observes('sortValue'),
+
+
+	// filter the content
+	filterText: "",
+
+	filteredContent: function(){
+
+		var filter = this.get('filterText');
+		// gi is global match & ignore cases
+		var rx = new RegExp(filter, 'gi');
+		var products = this.get('arrangedContent');
+
+		var itemsPerPage = this.get('selectedItem');
+
+		// could use an if else to remove the slice from the free text search
+		return products.filter(function(product){
+			return product.get('description').match(rx);
+		}).slice(0, itemsPerPage);
+	}.property('arrangedContent', 'filterText', 'selectedItem')
 	// sortAscending: false
 });
 

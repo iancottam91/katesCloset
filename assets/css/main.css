@@ -2593,24 +2593,83 @@ select[multiple].input-lg {
 body {
   margin: 0;
   font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
 }
 
-/* line 7, ../sass/_page.scss */
+/* line 8, ../sass/_page.scss */
 a {
   text-decoration: none;
   color: #85748c;
 }
-/* line 11, ../sass/_page.scss */
+/* line 12, ../sass/_page.scss */
 a:hover {
   text-decoration: underline;
 }
 
-/* line 16, ../sass/_page.scss */
+/* line 17, ../sass/_page.scss */
+input[type="text"] {
+  font-family: 'Open Sans Condensed', sans-serif;
+  width: 200px;
+  font-size: 16px;
+}
+
+/* line 23, ../sass/_page.scss */
+select {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+}
+
+/* line 29, ../sass/_page.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* line 41, ../sass/_page.scss */
 .content {
   padding-top: 40px;
 }
-/* line 20, ../sass/_page.scss */
-.content .col-md-4 {
+/* line 47, ../sass/_page.scss */
+.content .products .col-md-4 {
+  text-align: center;
+}
+
+/* line 55, ../sass/_page.scss */
+.product-controls h2 {
+  margin-top: 0;
+}
+/* line 61, ../sass/_page.scss */
+.product-controls .brand h3 {
+  margin-bottom: 5px;
+}
+/* line 65, ../sass/_page.scss */
+.product-controls .brand input[type="checkbox"] {
+  position: relative;
+  top: -2px;
+}
+/* line 70, ../sass/_page.scss */
+.product-controls .brand label {
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+/* line 77, ../sass/_page.scss */
+.filters {
+  margin-top: 7px;
+  margin-bottom: 20px;
+}
+/* line 83, ../sass/_page.scss */
+.filters .text-filter form {
+  float: right;
+}
+/* line 88, ../sass/_page.scss */
+.filters .sort-by {
   text-align: center;
 }
 
