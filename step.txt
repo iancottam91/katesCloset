@@ -14,3 +14,22 @@
 6) Use ember data to populate with dynamic content
 7) Add pagination
 8) Get description for 'product details' type page
+
+
+
+### Home ###
+
+## Top ##
+
+Welcome note
+
+Strap line
+
+Browse button
+
+similar to the flint & flame example
+
+## Below ##
+
+Insty feed
+Pick of the week - managed by kate

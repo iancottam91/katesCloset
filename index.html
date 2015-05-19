@@ -58,6 +58,32 @@
 
 	</script>
 
+	<script type="text/x-handlebars" data-template-name='index'>
+		<div class="jumbotron">
+    		<h1>Welcome to Kates Closet!</h1>
+    		<p class="tagline">All you favourite clothes in one place.</p>
+   			<p>{{#link-to 'products'}}Browse all products{{/link-to}}</p>
+  		</div>
+  		<div class="featured-products">
+  			<!-- Use a component for the product html -->
+  			<div class="row">
+	  			{{#each featured}}
+	  				<div class="col-md-4">
+					    <a {{bind-attr href='shopLink'}}><img {{bind-attr src='imgUrl'}} {{bind-attr alt='description'}}></a>									
+					    <p><a {{bind-attr href='shopLink'}}>Description: {{description}}</a></p>
+					    <p>Price: <span class="price">{{price}}</span></p>
+					    <p>Shop name: {{shopName}}</p>							 
+					</div>
+				{{/each}}
+				<div class="col-md-4 insty-feed">
+					<h3>Insty Feed</h3>
+				</div>
+  			</div>
+  		</div>
+	</script>
+
+	<!-- ' -->
+
 	<!-- Loop through each product in the products template - could be in the index template -->
 	<script type="text/x-handlebars" data-template-name='products'>
 		<div class="row">
@@ -65,26 +91,12 @@
 				<h2>Refine By:</h2>
 				<div class="brand">
 					<h3>Brand</h3>
-					<div>
-						<input checked type='checkbox' value='French Connection'>
-						<label>French Connection</label>
-					</div>
-					<div>
-						<input checked type='checkbox' value='French Connection'>
-						<label>French Connection</label>
-					</div>
-					<div>
-						<input checked type='checkbox' value='French Connection'>
-						<label>French Connection</label>
-					</div>
-					<div>
-						<input checked type='checkbox' value='French Connection'>
-						<label>French Connection</label>
-					</div>
-					<div>
-						<input checked type='checkbox' value='French Connection'>
-						<label>French Connection</label>
-					</div>
+					{{#each shops}}
+						<div>
+							{{input id=value type="checkbox" class="toggle" checked=isChecked}}
+							<label {{bind-attr for="value"}}>{{name}}</label>
+						</div>
+					{{/each}}
 				</div>
 			</div>
 			<div class="col-md-10">

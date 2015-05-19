@@ -27,6 +27,7 @@ App.Product = DS.Model.extend({
 	shopName: DS.attr('string'),
 	shopLink: DS.attr('boolean'),
 	imgUrl: DS.attr('string'),
+	featured: DS.attr('boolean'),
 });
 
 
@@ -39,7 +40,8 @@ App.Product.FIXTURES = [
 		price: 25.99,
 		shopName: "Zara",
 		shopLink: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
-		imgUrl : "//static.zara.net/photos//2015/V/0/1/p/4786/041/251/2/w/400/4786041251_2_5_1.jpg?ts=1423676733043"
+		imgUrl : "//static.zara.net/photos//2015/V/0/1/p/4786/041/251/2/w/400/4786041251_2_5_1.jpg?ts=1423676733043",
+		featured : true
 	},
 	{
 		id: 2,
@@ -47,7 +49,8 @@ App.Product.FIXTURES = [
 		price: 25.99,
 		shopName: "Zara",
 		shopLink: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
-		imgUrl : "//static.zara.net/photos//2015/V/1/1/p/1536/001/040/2/w/400/1536001040_2_9_1.jpg?ts=1423474188809"
+		imgUrl : "//static.zara.net/photos//2015/V/1/1/p/1536/001/040/2/w/400/1536001040_2_9_1.jpg?ts=1423474188809",
+		featured : false
 	},
 	{
 		id: 3,
@@ -55,7 +58,8 @@ App.Product.FIXTURES = [
 		price: 75,
 		shopName: "French Connection",
 		shopLink: "http://www.frenchconnection.com/product/Woman+New+In/71DEK/Cobalt+Tencel+Shirt+Dress.htm",
-		imgUrl : "//media.frenchconnection.com/ms/fcuk/71DEK_model/768/526/Cobalt-Tencel-Shirt-Dress.jpg?lc=en-GB&lv=9&404=fcuk/71DEK.jpg"
+		imgUrl : "//media.frenchconnection.com/ms/fcuk/71DEK_model/768/526/Cobalt-Tencel-Shirt-Dress.jpg?lc=en-GB&lv=9&404=fcuk/71DEK.jpg",
+		featured : true
 	},
 	{
 		id: 4,
@@ -63,7 +67,8 @@ App.Product.FIXTURES = [
 		price: 48,
 		shopName: "Warehouse",
 		shopLink: "http://www.warehouse.co.uk/casual-army-shirt-jacket/all/warehouse/fcp-product/02282028",
-		imgUrl: "http://media.warehouse.co.uk/pws/client/images/catalogue/products/02282028/list4/02282028.jpg"
+		imgUrl: "http://media.warehouse.co.uk/pws/client/images/catalogue/products/02282028/list4/02282028.jpg",
+		featured : false
 	},
 	{
 		id: 5,
@@ -71,7 +76,8 @@ App.Product.FIXTURES = [
 		imgUrl: "http://images.asos-media.com/inv/media/0/8/9/2/4882980/navy/image1xl.jpg",
 		price: 32,
 		shopLink: "http://www.asos.com/ASOS/ASOS-Peplum-Top-with-Mixed-Fabric/Prod/pgeproduct.aspx?iid=4882980&cid=2623&sh=0&pge=0&pgesize=36&sort=-1&clr=Navy&totalstyles=591&gridsize=3",
-		shopName: "Asos"
+		shopName: "Asos",
+		featured : false
 	},
 	{
 		id: 6,
@@ -79,10 +85,18 @@ App.Product.FIXTURES = [
 		imgUrl: "http://media.karenmillen.com/pws/client/images/catalogue/products/103DV11808/list5/103DV11808.jpg",
 		price: 145,
 		shopLink: "http://www.karenmillen.com/floral-cotton-dress/new-in/karenmillen/fcp-product/103DV11808",
-		shopName: "Karen Millen"
+		shopName: "Karen Millen",
+		featured : false
 	}
 
 ];
+
+App.IndexRoute = Ember.Route.extend({
+	model: function(){
+		return this.store.findAll('product');
+	}
+});
+
 
 // Gets the product data from the data store
 App.ProductsRoute = Ember.Route.extend({
@@ -92,6 +106,15 @@ App.ProductsRoute = Ember.Route.extend({
 		// return this.store.findAll('product', {order: 'title'}); 
 		return this.store.findAll('product'); 
 	}
+
+});
+
+// Controllers are used to work with the data in the model. 'this' refers to the model data
+App.IndexController = Ember.ArrayController.extend({
+
+	featured : function(){
+		return this.filterBy('featured').slice(0,2);
+	}.property('@each.featured'),
 
 });
 
@@ -125,32 +148,87 @@ App.ProductsController = Ember.ArrayController.extend({
 	// initally sort by description
 	sortValue : 'description', // for the select menu
 	sortProperties: ['description'], // for the actual sorting
+	// sortAscending: false
 
 	// observe changes to the select menu & change the sortProperties appropriately
     onSortPropertiesChange : function(){
-	  console.log('change');
-	  this.set('sortProperties', ['price']);
+	  var sortVal = this.get('sortValue');
+	  console.log(sortVal);
+	  this.set('sortProperties', [sortVal]);
 	}.observes('sortValue'),
 
 
 	// filter the content
+
+	// text filter
 	filterText: "",
+
+	// checkbox filter - perhaps can get this from the database
+	shops: [
+		{
+			name: 'French Connection',
+			value: 'French Connection',
+			isChecked: true,
+		},
+		{
+			name: 'Zara',
+			value: 'Zara',
+			isChecked: true,
+		},
+		{
+			name: 'Asos',
+			value: 'Asos',
+			isChecked: true,
+		},
+		{
+			name: 'Warehouse',
+			value: 'Warehouse',
+			isChecked: true,
+		},
+		{
+			name: 'Karen Millen',
+			value: 'Karen Millen',
+			isChecked: true,
+		}
+
+	],
 
 	filteredContent: function(){
 
 		var filter = this.get('filterText');
-		// gi is global match & ignore cases
+		// Regex for the text string - gi is global match & ignore cases
 		var rx = new RegExp(filter, 'gi');
+
+		// the products
 		var products = this.get('arrangedContent');
 
+		// items per page from select box
 		var itemsPerPage = this.get('selectedItem');
 
-		// could use an if else to remove the slice from the free text search
+		// checkboxes for brand names
+		var checkedShops = this.get('shops').filterBy('isChecked');
+		var checkedShopsArray = [];
+
+		// make array of checked shops to use for filter checks
+		for(i=0;i<checkedShops.length;i++){
+			checkedShopsArray.push(checkedShops[i].name);
+		}
+
 		return products.filter(function(product){
-			return product.get('description').match(rx);
+
+			// only return products that have the shopName checked
+			if(checkedShopsArray.indexOf(product.get('shopName')) >= 0)
+			{	
+				// check the products against the text string
+				return product.get('description').match(rx);
+			}
+
+
 		}).slice(0, itemsPerPage);
-	}.property('arrangedContent', 'filterText', 'selectedItem')
-	// sortAscending: false
+		// slice amount of products to show to the value in the select box
+
+	}.property('arrangedContent', 'filterText', 'selectedItem', 'shops.@each.isChecked')
+
 });
 
 
