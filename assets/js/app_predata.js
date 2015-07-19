@@ -23,11 +23,11 @@ App.Router.map(function(){
 
 // model for the products
 App.Product = DS.Model.extend({
-	shop_name: DS.attr('string'),
+	shopName: DS.attr('string'),
 	price: DS.attr(''),
 	description: DS.attr('string'),
-	img_src: DS.attr('string'),
-	shop_link: DS.attr('boolean'),
+	imgUrl: DS.attr('string'),
+	shopLink: DS.attr('boolean'),
 	featured: DS.attr('boolean'),
 });
 
@@ -39,54 +39,54 @@ App.Product.FIXTURES = [
 		id: 1,
 		description: "CROPPED EMBROIDERED LASER-CUT TOP",
 		price: 25.99,
-		shop_name: "Zara",
-		shop_link: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
-		img_src : "//static.zara.net/photos//2015/V/0/1/p/4786/041/251/2/w/400/4786041251_2_5_1.jpg?ts=1423676733043",
+		shopName: "Zara",
+		shopLink: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
+		imgUrl : "//static.zara.net/photos//2015/V/0/1/p/4786/041/251/2/w/400/4786041251_2_5_1.jpg?ts=1423676733043",
 		featured : true
 	},
 	{
 		id: 2,
 		description: "LASER-CUT TOP",
 		price: 25.99,
-		shop_name: "Zara",
-		shop_link: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
-		img_src : "//static.zara.net/photos//2015/V/1/1/p/1536/001/040/2/w/400/1536001040_2_9_1.jpg?ts=1423474188809",
+		shopName: "Zara",
+		shopLink: "http://www.zara.com/uk/en/new-this-week/woman/cropped-embroidered-laser-cut-top-c363008p2422002.html",
+		imgUrl : "//static.zara.net/photos//2015/V/1/1/p/1536/001/040/2/w/400/1536001040_2_9_1.jpg?ts=1423474188809",
 		featured : false
 	},
 	{
 		id: 3,
 		description: "Cobalt Tencel Shirt Dress",
 		price: 75,
-		shop_name: "French Connection",
-		shop_link: "http://www.frenchconnection.com/product/Woman+New+In/71DEK/Cobalt+Tencel+Shirt+Dress.htm",
-		img_src : "//media.frenchconnection.com/ms/fcuk/71DEK_model/768/526/Cobalt-Tencel-Shirt-Dress.jpg?lc=en-GB&lv=9&404=fcuk/71DEK.jpg",
+		shopName: "French Connection",
+		shopLink: "http://www.frenchconnection.com/product/Woman+New+In/71DEK/Cobalt+Tencel+Shirt+Dress.htm",
+		imgUrl : "//media.frenchconnection.com/ms/fcuk/71DEK_model/768/526/Cobalt-Tencel-Shirt-Dress.jpg?lc=en-GB&lv=9&404=fcuk/71DEK.jpg",
 		featured : true
 	},
 	{
 		id: 4,
 		description: "Casual Army Shirt Jacket",
 		price: 48,
-		shop_name: "Warehouse",
-		shop_link: "http://www.warehouse.co.uk/casual-army-shirt-jacket/all/warehouse/fcp-product/02282028",
-		img_src: "http://media.warehouse.co.uk/pws/client/images/catalogue/products/02282028/list4/02282028.jpg",
+		shopName: "Warehouse",
+		shopLink: "http://www.warehouse.co.uk/casual-army-shirt-jacket/all/warehouse/fcp-product/02282028",
+		imgUrl: "http://media.warehouse.co.uk/pws/client/images/catalogue/products/02282028/list4/02282028.jpg",
 		featured : false
 	},
 	{
 		id: 5,
 		description: "ASOS Peplum Top with Mixed Fabric",
-		img_src: "http://images.asos-media.com/inv/media/0/8/9/2/4882980/navy/image1xl.jpg",
+		imgUrl: "http://images.asos-media.com/inv/media/0/8/9/2/4882980/navy/image1xl.jpg",
 		price: 32,
-		shop_link: "http://www.asos.com/ASOS/ASOS-Peplum-Top-with-Mixed-Fabric/Prod/pgeproduct.aspx?iid=4882980&cid=2623&sh=0&pge=0&pgesize=36&sort=-1&clr=Navy&totalstyles=591&gridsize=3",
-		shop_name: "Asos",
+		shopLink: "http://www.asos.com/ASOS/ASOS-Peplum-Top-with-Mixed-Fabric/Prod/pgeproduct.aspx?iid=4882980&cid=2623&sh=0&pge=0&pgesize=36&sort=-1&clr=Navy&totalstyles=591&gridsize=3",
+		shopName: "Asos",
 		featured : false
 	},
 	{
 		id: 6,
 		description: "Floral cotton dress",
-		img_src: "http://media.karenmillen.com/pws/client/images/catalogue/products/103DV11808/list5/103DV11808.jpg",
+		imgUrl: "http://media.karenmillen.com/pws/client/images/catalogue/products/103DV11808/list5/103DV11808.jpg",
 		price: 145,
-		shop_link: "http://www.karenmillen.com/floral-cotton-dress/new-in/karenmillen/fcp-product/103DV11808",
-		shop_name: "Karen Millen",
+		shopLink: "http://www.karenmillen.com/floral-cotton-dress/new-in/karenmillen/fcp-product/103DV11808",
+		shopName: "Karen Millen",
 		featured : false
 	}
 
@@ -217,8 +217,8 @@ App.ProductsController = Ember.ArrayController.extend({
 
 		return products.filter(function(product){
 
-			// only return products that have the shop_name checked
-			if(checkedShopsArray.indexOf(product.get('shop_name')) >= 0)
+			// only return products that have the shopName checked
+			if(checkedShopsArray.indexOf(product.get('shopName')) >= 0)
 			{	
 				// check the products against the text string
 				return product.get('description').match(rx);

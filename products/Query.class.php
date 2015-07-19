@@ -63,17 +63,40 @@ class Query{
 		}
 
 		$rows = array();
+		$i = 1;
 		while($row = mysqli_fetch_array($sql_all_retval, MYSQL_ASSOC))
 		{
-		    $rows[] = $row;
+		    // echo $i . '<br>';
+		    // echo '<br>';
+		    $row["id"] = $i;
+		    // var_dump($row);
+		    $rows[] = array_reverse($row);
+
+		    $i++;
+		    if($i>200){
+		    	break;
+		    }
 		}
-		return json_encode($rows);
-
-		$fp = fopen('results.json', 'w');
-		fwrite($fp, json_encode($rows));
-		fclose($fp);
-
 		mysqli_close($link);
+
+		// $productsJson = json_encode($rows);
+		// echo $productsJson;
+		$labelledJson = new stdClass();
+		// $obj->label="Devices per year";
+		$labelledJson->products = $rows;
+
+		return json_encode($labelledJson);
+
+
+		// var_dump($labelledJson);
+
+		// echo json_encode($labelledJson);
+
+
+		// $fp = fopen('results.json', 'w');
+		// fwrite($fp, json_encode($labelledJson));
+		// fclose($fp);
+
 
 
 	}

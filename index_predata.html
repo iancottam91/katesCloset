@@ -69,10 +69,10 @@
   			<div class="row">
 	  			{{#each featured}}
 	  				<div class="col-md-4">
-					    <a {{bind-attr href='shop_link'}}><img {{bind-attr src='img_src'}} {{bind-attr alt='description'}}></a>									
-					    <p><a {{bind-attr href='shop_link'}}>Description: {{description}}</a></p>
+					    <a {{bind-attr href='shopLink'}}><img {{bind-attr src='imgUrl'}} {{bind-attr alt='description'}}></a>									
+					    <p><a {{bind-attr href='shopLink'}}>Description: {{description}}</a></p>
 					    <p>Price: <span class="price">{{price}}</span></p>
-					    <p>Shop name: {{shop_name}}</p>							 
+					    <p>Shop name: {{shopName}}</p>							 
 					</div>
 				{{/each}}
 				<div class="col-md-4 insty-feed">
@@ -120,10 +120,10 @@
 				<div class="products">
 					{{#each filteredContent}}
 						<div class="col-md-4">
-						    <a {{bind-attr href='shop_link'}}><img {{bind-attr src='img_src'}} {{bind-attr alt='description'}}></a>									
-						    <p><a {{bind-attr href='shop_link'}}>Description: {{description}}</a></p>
+						    <a {{bind-attr href='shopLink'}}><img {{bind-attr src='imgUrl'}} {{bind-attr alt='description'}}></a>									
+						    <p><a {{bind-attr href='shopLink'}}>Description: {{description}}</a></p>
 						    <p>Price: <span class="price">{{price}}</span></p>
-						    <p>Shop name: {{shop_name}}</p>							 
+						    <p>Shop name: {{shopName}}</p>							 
 						</div>
 					{{/each}}
 				</div>

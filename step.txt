@@ -12,6 +12,12 @@
 
 
 6) Use ember data to populate with dynamic content
+- http://emberjs.com/api/data/classes/DS.RESTAdapter.html
+- need to get id into each file
+- need to call it Product.php
+- need /products to be all data
+- need /products/1 to be the first
+
 7) Add pagination
 8) Get description for 'product details' type page
 
